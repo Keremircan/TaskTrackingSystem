@@ -1,0 +1,32 @@
+﻿@model WorkStaffViewModel
+@{
+}
+
+<form asp-action="Assign" method="post">
+    <div class="form-group">
+        <label for="Title">İş Başlığı</label>
+        <input type="text" class="form-control" asp-for="Work.Title">
+        <span asp-validation-for="Work.Title" class="text-danger"></span>
+
+        <label for="Description">İş Açıklaması</label>
+        <textarea class="form-control" asp-for="Work.Description" aria-label="textarea"></textarea>
+        <span asp-validation-for="Work.Description" class="text-danger"></span>
+
+        <label for="StaffID">Çalışan</label>
+        <select class="form-control" asp-for="Work.StaffID">
+            <option value="">Seçiniz</option>
+            @if (Model?.Staffs != null && Model.Staffs.Any())
+			{
+				foreach (var item in Model.Staffs)
+				{
+					<option value="@item.ID">@item.Name</option>
+				}
+			}else{
+                <option>Mevcut Çalışan Yok</option>
+            }
+
+        </select>
+        <span asp-validation-for="Work.StaffID" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">İş Ata</button>
+</form>

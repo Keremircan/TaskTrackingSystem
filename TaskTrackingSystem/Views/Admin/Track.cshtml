@@ -1,0 +1,27 @@
+﻿@model List<Staff>
+@{
+}
+
+<form asp-action="Track" method="post">
+    <div class="form-group">
+        <label for="staffid">Çalışan</label>
+        <select class="form-control" name="staffid">
+            <option value="">Seçiniz</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+
+    </div>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger error">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+    <button type="submit" class="btn btn-outline-primary">İşleri Göster</button>
+</form>

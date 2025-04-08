@@ -1,0 +1,24 @@
+﻿@model List<Work>
+@{
+}
+
+@if (Model.Count != 0)
+{
+    @foreach (var work in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@work.Title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">@work.Description</p>
+                <button class="btn btn-danger">Sil</button>
+            </div>
+        </div>
+    }
+    
+}else{
+    <div class="alert alert-warning" role="alert">
+        Henüz bir iş eklenmemiş.
+    </div>
+}
+
