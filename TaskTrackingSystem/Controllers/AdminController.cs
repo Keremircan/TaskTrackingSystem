@@ -67,17 +67,31 @@ namespace TaskTrackingSystem.Controllers
             {
                 return NotFound();
             }
-            HttpContext.Session.SetInt32("staffid", staff.ID);
+            HttpContext.Session.SetInt32("selectStaffid", staff.ID);
             return RedirectToAction(nameof(List));
         }
         public IActionResult List()
         {
-            var staffid = HttpContext.Session.GetInt32("staffid");
+            var staffid = HttpContext.Session.GetInt32("selectStaffid");
 
             var works = _context.Works.Where(w=>w.StaffID == staffid).ToList();
 
             return View(works);
             
+        }
+        public IActionResult Delete(int id)
+        {
+            var curwork = _context.Works.Find(id);
+            if (curwork == null)
+            {
+                return NotFound(); 
+            }
+
+            _context.Works.Remove(curwork);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(List));
+
         }
     }
 }

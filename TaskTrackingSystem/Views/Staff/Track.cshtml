@@ -16,12 +16,9 @@
                 <p class="card-text">@work.Description</p>
                 <p class="card-text">İletilen Tarih:</p>
                 <p class="card-text">Yapılan Tarih:</p>
-                @if (work.IsCompleted == 1)
-                {
+                @if (work.IsCompleted == 1) {
                     <p class="card-text">İş Durumu: Tamamlandı</p>
-                }
-                else
-                {
+                }else{
                     <p class="card-text">İş Durumu: Yapılıyor</p>
                 }
                 @if (!string.IsNullOrEmpty(work.Comment))
@@ -32,7 +29,7 @@
                 {
                     <p class="card-text">İş Yorumu: Henüz yorum yok.</p>
                 }
-                <a asp-area="" asp-controller="Admin" asp-action="Delete" asp-route-id="@work.WorkID" class="btn btn-danger">Sil</a>
+
             </div>
         </div>
     }

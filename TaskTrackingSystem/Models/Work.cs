@@ -13,6 +13,10 @@ namespace TaskTrackingSystem.Models
         public string Description { get; set; } = string.Empty;
         [Required]
         public int StaffID { get; set; }
-
+        [Required]
+        public int IsRead { get; set; } = 0;
+        [Required]
+        public int IsCompleted { get; set; } = 0;
+        public string? Comment { get; set; } = string.Empty;
     }
 }

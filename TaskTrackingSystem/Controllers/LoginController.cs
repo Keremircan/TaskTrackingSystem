@@ -48,6 +48,7 @@ namespace TaskTrackingSystem.Controllers
             }
             else if (staff != null && staff.Password == password)
             {
+                HttpContext.Session.SetInt32("staffid", staff.ID);
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, staff.Name),
@@ -59,7 +60,7 @@ namespace TaskTrackingSystem.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToAction("Index", "Staff");
+                return RedirectToAction("List", "Staff");
             }
             else
             {
